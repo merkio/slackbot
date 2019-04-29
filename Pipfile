@@ -1,14 +1,16 @@
 [[source]]
 name = "pypi"
 verify_ssl = true
-url = "https://pypi.org/simple"
+url = "https://pypi.yandex-team.ru/simple"
 
 [packages]
 slackclient = "*"
 requests = "*"
+startrek_client = "*"
+yandex-passport-vault-client = "*"
 
 [dev-packages]
 pytest = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.6"

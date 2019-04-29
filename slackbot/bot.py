@@ -1,9 +1,10 @@
-from slackclient import SlackClient
-from slackbot import *
 import logging.config
 import logging
 from os import path
-import json
+
+from slackclient import SlackClient
+
+from slackbot import *
 
 log_file_path = path.join(path.dirname(path.abspath(__file__)), 'config', 'logging.conf')
 logging.config.fileConfig(log_file_path)
@@ -12,9 +13,9 @@ logger = logging.getLogger(__name__)
 
 class SlackBot:
     def __init__(self, handler: Handler) -> None:
-        self.slack_client = SlackClient(config.BOT_TOKEN)
-        self.bot_id = config.BOT_ID
-        self.bot_at_id = f'<@{self.bot_id}>'
+        self.slack_client = SlackClient(config.bot_token)
+        self.bot_id = config.bot_id
+        self.bot_at_id = '<@{}>'.format(self.bot_id)
         self.handler = handler
 
     def slack_connect(self):
@@ -31,7 +32,7 @@ class SlackBot:
                     return message
 
     def handle_message(self, message: Message):
-        if message and message.text:
+        if message:
             return self.handler.handle(message, self)
 
     def send_message(self, channel: str, text: str):

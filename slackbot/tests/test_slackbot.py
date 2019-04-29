@@ -1,5 +1,5 @@
 from slackbot.tests.base import Base
-from slackbot import *
+from slackbot import config
 
 
 class TestBot(Base):
@@ -15,7 +15,7 @@ class TestBot(Base):
         assert self.input_parse == bot.parse_slack_input(self.input)
 
     def test_get_bot_id(self, bot):
-        assert bot.get_bot_id(BOT_NAME) == BOT_ID
+        assert bot.get_bot_id(config.bot_name) == config.bot_id
 
     def test_send_message(self, bot):
         assert bot.send_message('DHWA8M8NN', 'Testing writing to slack')
